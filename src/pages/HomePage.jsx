@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import { useSelector } from "react-redux";
 
 const HomePage = () => {
   const audioRef = useRef();
@@ -7,7 +8,7 @@ const HomePage = () => {
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
   const [isLoaded, setIsLoaded] = useState(false);
-
+  const products = useSelector((state) => state.product);
   useEffect(() => {
     fetch(
       "https://ia800208.us.archive.org/14/items/testmp3testfile/mpthreetest.mp3"
@@ -48,6 +49,10 @@ const HomePage = () => {
     }
   };
 
+  const totalId = products?.reduce((total, product) => {
+    return total + product.id;
+  }, "");
+
   return (
     <div>
       <audio
@@ -80,6 +85,8 @@ const HomePage = () => {
           ></div>
         </div>
       )}
+
+      {totalId}
     </div>
   );
 };

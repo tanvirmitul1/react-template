@@ -35,7 +35,7 @@ const Products = () => {
   return (
     <div>
       {products
-        ?.filter((product) => [3, 5, 6].includes(product.id))
+        ?.filter((product) => ![3, 5, 6].includes(product.id))
         .map((item, index) => (
           <div key={index}>
             <span>{item.id}</span>
